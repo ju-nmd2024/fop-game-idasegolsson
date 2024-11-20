@@ -8,10 +8,9 @@ let state = "start";
 let characterY = -400;
 let velocity = 2;
 let acceleration = 0.5;
-//let speedLimit = 5;
 
 function setup() {
-  createCanvas(1000, 1000);
+  createCanvas(600, 700);
   stars();
   console.log("Canvas created");
 }
@@ -197,8 +196,6 @@ function winScreen() {
   textSize(40);
   text("Click to play again", 130, 280);
   character(800, characterY, 0.3);
-  //characterY = 100;
-  //velocity = 0;
 }
 
 function loseScreen() {
@@ -206,8 +203,6 @@ function loseScreen() {
   text("Too bad! Click to play again", 80, 240);
   textSize(35);
   character(800, characterY, 0.3);
-  characterY = 1500;
-  //velocity = 0;
 }
 
 function draw() {
@@ -234,24 +229,20 @@ function draw() {
     velocity = velocity - 1;
   }
   //Markus Ekerheim helped me with the line under
-  if (characterY >= 1500 && velocity < 5) {
+  if (characterY >= 1600 && velocity < 7) {
     state = "win";
-    console.log(velocity);
   }
 
-  if (characterY >= 1500 && velocity > 5) {
+  if (characterY >= 1600 && velocity > 7) {
     state = "lost";
-    console.log(velocity);
   }
 }
+
+//Lova Venema and Markus Ekerheim helped me with following 11 lines
 function mouseClicked() {
   if (state === "start") {
     state = "game";
-  } /*else if (state === "game") {
-    state = "result";
-  } else if (state === "result") {
-    state = "start";
-  } */ else if (state === "lost") {
+  } else if (state === "lost") {
     state = "start";
     velocity = 0;
     characterY = -400;
